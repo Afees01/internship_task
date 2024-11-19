@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:internship_task/view/screen_2/screen_2.dart';
+import 'package:internship_task/view/screen_3/screen_3.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,9 +31,10 @@ class HomeScreen extends StatelessWidget {
             _buildShopInfoText("Commission %:", "10"),
             _buildAddImageButton(),
             SizedBox(height: 20),
-            _buildSectionWithIconText("Packaging & Delivery"),
+            _buildSectionWithIconText(
+                "Packaging & Delivery", context, Screen2()),
             SizedBox(height: 10),
-            _buildSectionWithIconText("Promotions"),
+            _buildSectionWithIconText("Promotions", context, Screen3()),
             SizedBox(height: 50),
             _buildNoteSection(),
           ],
@@ -70,14 +73,14 @@ class HomeScreen extends StatelessWidget {
   // Helper Method: Builds the "Add Image" button
   Widget _buildAddImageButton() {
     return Container(
-      width: 328,
-      height: 40,
+      width: 380,
+      height: 42,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: Color.fromRGBO(255, 22, 22, 1)),
       child: Center(
         child: Text(
-          "Add Image",
+          "Save",
           style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
         ),
       ),
@@ -85,25 +88,35 @@ class HomeScreen extends StatelessWidget {
   }
 
   // Helper Method: Builds a section with icon and text (Packaging, Promotions)
-  Widget _buildSectionWithIconText(String sectionTitle) {
-    return Container(
-      width: 328,
-      height: 40,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Row(
-        children: [
-          Spacer(),
-          Text(
-            sectionTitle,
-            style: TextStyle(color: Color.fromRGBO(255, 22, 22, 1)),
-          ),
-          Spacer(),
-          Icon(Icons.chevron_right_outlined,
-              color: Color.fromRGBO(98, 98, 98, 1)),
-        ],
+  Widget _buildSectionWithIconText(
+      String sectionTitle, BuildContext context, Widget designatioScreen) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => designatioScreen,
+            ));
+      },
+      child: Container(
+        width: 328,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color.fromRGBO(255, 255, 255, 1),
+        ),
+        child: Row(
+          children: [
+            Spacer(),
+            Text(
+              sectionTitle,
+              style: TextStyle(color: Color.fromRGBO(255, 22, 22, 1)),
+            ),
+            Spacer(),
+            Icon(Icons.chevron_right_outlined,
+                color: Color.fromRGBO(98, 98, 98, 1)),
+          ],
+        ),
       ),
     );
   }

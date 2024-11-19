@@ -163,6 +163,22 @@ class Screen2 extends StatelessWidget {
               height: 96,
               child: Text(
                   "Note:\n\n1.Minimum Value Allowed: ₹ 0\n2.Maximum Value Allowed: ₹ 100"),
+            ),
+            Spacer(),
+            Center(
+              child: Container(
+                width: 370,
+                height: 42,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Color.fromRGBO(255, 22, 22, 1)),
+                child: Center(
+                  child: Text(
+                    "Add Image",
+                    style: TextStyle(color: Color.fromRGBO(255, 255, 255, 1)),
+                  ),
+                ),
+              ),
             )
           ],
         ),
