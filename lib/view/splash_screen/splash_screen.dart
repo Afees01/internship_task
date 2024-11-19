@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:internship_task/view/home_screen/home_screen.dart';
+import 'package:internship_task/view/screen_2/screen_2.dart';
 
 void main() {
   runApp(MyApp());
@@ -28,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => Screen2()),
       );
     });
   }

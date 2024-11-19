@@ -24,33 +24,24 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ShopInfoText(title: "Shop Name:", value: "Hub Quality Bakers"),
-            ShopInfoText(
-                title: "FSSAI License Number:", value: "873687DHDHJH122"),
-            ShopInfoText(title: "Commission %:", value: "10"),
-            AddImageButton(),
+            _buildShopInfoText("Shop Name:", "Hub Quality Bakers"),
+            _buildShopInfoText("FSSAI License Number:", "873687DHDHJH122"),
+            _buildShopInfoText("Commission %:", "10"),
+            _buildAddImageButton(),
             SizedBox(height: 20),
-            PackagingAndDelivery(),
+            _buildSectionWithIconText("Packaging & Delivery"),
             SizedBox(height: 10),
-            Promotions(),
+            _buildSectionWithIconText("Promotions"),
             SizedBox(height: 50),
-            NoteSection(),
+            _buildNoteSection(),
           ],
         ),
       ),
     );
   }
-}
 
-// Shop Information Text widget (used for Shop Name, License, Commission)
-class ShopInfoText extends StatelessWidget {
-  final String title;
-  final String value;
-
-  const ShopInfoText({required this.title, required this.value});
-
-  @override
-  Widget build(BuildContext context) {
+  // Helper Method: Builds a shop info text widget
+  Widget _buildShopInfoText(String title, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -75,12 +66,9 @@ class ShopInfoText extends StatelessWidget {
       ],
     );
   }
-}
 
-// Add Image Button widget
-class AddImageButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  // Helper Method: Builds the "Add Image" button
+  Widget _buildAddImageButton() {
     return Container(
       width: 328,
       height: 40,
@@ -95,12 +83,9 @@ class AddImageButton extends StatelessWidget {
       ),
     );
   }
-}
 
-// Packaging & Delivery widget
-class PackagingAndDelivery extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  // Helper Method: Builds a section with icon and text (Packaging, Promotions)
+  Widget _buildSectionWithIconText(String sectionTitle) {
     return Container(
       width: 328,
       height: 40,
@@ -112,7 +97,7 @@ class PackagingAndDelivery extends StatelessWidget {
         children: [
           Spacer(),
           Text(
-            "Packaging & Delivery",
+            sectionTitle,
             style: TextStyle(color: Color.fromRGBO(255, 22, 22, 1)),
           ),
           Spacer(),
@@ -122,39 +107,9 @@ class PackagingAndDelivery extends StatelessWidget {
       ),
     );
   }
-}
 
-// Promotions widget
-class Promotions extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 328,
-      height: 40,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Color.fromRGBO(255, 255, 255, 1),
-      ),
-      child: Row(
-        children: [
-          Spacer(),
-          Text(
-            "Promotions",
-            style: TextStyle(color: Color.fromRGBO(255, 22, 22, 1)),
-          ),
-          Spacer(),
-          Icon(Icons.chevron_right_outlined,
-              color: Color.fromRGBO(98, 98, 98, 1)),
-        ],
-      ),
-    );
-  }
-}
-
-// Note section widget
-class NoteSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  // Helper Method: Builds the "Note" section
+  Widget _buildNoteSection() {
     return Container(
       width: 328,
       height: 200,
@@ -169,56 +124,41 @@ class NoteSection extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          SizedBox(height: 10), // Space below the "Note:" text
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "1. ", // Number with period
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  "Shop will not be visible to customers if you have no products added!",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          SizedBox(height: 10),
+          _buildNoteRow("1. ",
+              "Shop will not be visible to customers if you have no products added!"),
           SizedBox(height: 5),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "2. ",
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  "We recommend adding products at menu price to avoid items being delisted in the future!",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          _buildNoteRow("2. ",
+              "We recommend adding products at menu price to avoid items being delisted in the future!"),
         ],
       ),
+    );
+  }
+
+  // Helper Method: Builds each row of the note section
+  Widget _buildNoteRow(String number, String noteText) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          number, // Number with period
+          style: TextStyle(
+            color: Color.fromRGBO(0, 0, 0, 1),
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        Expanded(
+          child: Text(
+            noteText,
+            style: TextStyle(
+              color: Color.fromRGBO(0, 0, 0, 1),
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
